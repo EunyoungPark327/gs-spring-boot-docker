@@ -35,7 +35,7 @@ jobs:
           mkdir -p complete/build/dependency && (cd complete/build/dependency && jar -xf ../libs/*.jar)
       - name: Build Docker Image
         run: |
-          docker build -t spring-boot-app:latest -f complete/Dockerfile complete/
+          docker build --build-arg DEPENDENCY=complete/build/dependency -t spring-boot-app:latest -f complete/Dockerfile complete/
           docker tag spring-boot-app:latest ${{ steps.login-ecr.outputs.registry }}/spring-boot-app:latest
       - name: Push Docker Image to ECR
         run: |
