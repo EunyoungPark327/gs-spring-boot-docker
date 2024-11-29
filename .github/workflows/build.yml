@@ -29,7 +29,7 @@ jobs:
       - name: Build Spring Boot Application
         run: |
           cd complete
-          ./gradlew clean build
+          ./gradlew clean build unpack
       - name: Build Docker Image
         run: |
           docker build -t spring-boot-app:latest -f complete/Dockerfile complete/
