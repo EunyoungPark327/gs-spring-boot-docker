@@ -32,9 +32,8 @@ jobs:
           ./gradlew clean build
       - name: Extract JAR Dependencies
         run: |
-          mkdir -p build/dependency
-          cd build/dependency
-          pwd
+          mkdir -p complete/build/dependency
+          cd complete/build/dependency
           jar -xf ../libs/complete-0.0.1-SNAPSHOT.jar
       - name: Build Docker Image
         run: |
