@@ -33,7 +33,7 @@ jobs:
       - name: Extract JAR Dependencies
         run: |
           mkdir -p build/dependency
-          cd dependency && jar -xf ../libs/complete-0.0.1-SNAPSHOT.jar
+          cd build/dependency && jar -xf ../libs/complete-0.0.1-SNAPSHOT.jar
       - name: Build Docker Image
         run: |
           docker build --build-arg DEPENDENCY=complete/build/dependency -t spring-boot-app:latest -f complete/Dockerfile complete/
