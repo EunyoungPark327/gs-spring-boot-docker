@@ -21,9 +21,13 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+      - name: Build Spring Boot Application
+        run: |
+          cd complete
+          ./gradlew clean build
       - name: Build Docker Image
         run: |
-          docker build -t spring-boot-app:latest .
+          docker build -t spring-boot-app:latest -f complete/Dockerfile complete/
           docker tag spring-boot-app:latest ${{ steps.login-ecr.outputs.registry }}/spring-boot-app:latest
       - name: Push Docker Image to ECR
         run: |
